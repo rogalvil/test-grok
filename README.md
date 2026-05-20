@@ -87,9 +87,15 @@ Este proyecto sigue las reglas definidas en `rav ai-setup`:
 ## Estado Actual
 
 - [x] Repositorio creado
-- [x] Documentación inicial (este README + docs/)
-- [ ] Proyecto Godot inicializado
-- [ ] Primeros issues creados
+- [x] Documentación inicial completa
+- [x] Proyecto Godot 4 inicializado con estructura recomendada
+- [x] **MVP jugable**: Personaje puede caminar por un mapa generado con colisiones y cámara que lo sigue
+
+**Cómo jugar el MVP actual:**
+- Abrir en Godot 4.3+
+- Presionar Play (F5)
+- Usar WASD o Flechas para moverte
+- Explora el mapa generado (60x40 tiles con paredes y decoración)
 
 ---
 
