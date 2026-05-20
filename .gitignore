@@ -1,7 +1,7 @@
 # Godot 4+ specific ignores
 .godot/
 export.cfg
-export_presets.cfg
+# export_presets.cfg  → We version this one so export settings are shared
 
 # Imported translations (automatically generated from CSV files)
 *.translation
