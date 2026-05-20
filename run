@@ -1,0 +1,80 @@
+#!/bin/bash
+#
+# run - Helper script to easily run or edit the test-grok Godot project on macOS.
+#
+# Usage:
+#   ./run              # Run the game directly
+#   ./run --editor     # Open the project in Godot editor
+#   ./run -h | --help  # Show this help
+
+set -e
+
+PROJECT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+GODOT_APP=""
+
+# Common locations for Godot on macOS
+POSSIBLE_PATHS=(
+    "/Applications/Godot.app/Contents/MacOS/Godot"
+    "$HOME/Applications/Godot.app/Contents/MacOS/Godot"
+    "/opt/homebrew/bin/godot"
+    "/usr/local/bin/godot"
+)
+
+find_godot() {
+    # Check if 'godot' is available in PATH
+    if command -v godot >/dev/null 2>&1; then
+        GODOT_APP="godot"
+        return 0
+    fi
+
+    # Check common application paths
+    for path in "${POSSIBLE_PATHS[@]}"; do
+        if [ -x "$path" ]; then
+            GODOT_APP="$path"
+            return 0
+        fi
+    done
+
+    return 1
+}
+
+show_help() {
+    echo "test-grok run helper"
+    echo ""
+    echo "Usage:"
+    echo "  ./run              Run the game"
+    echo "  ./run --editor     Open the project in the Godot editor"
+    echo "  ./run -h, --help   Show this help message"
+    echo ""
+    echo "The script will try to automatically find Godot on your Mac."
+}
+
+main() {
+    if [[ "$1" == "-h" || "$1" == "--help" ]]; then
+        show_help
+        exit 0
+    fi
+
+    if ! find_godot; then
+        echo "Error: Could not find Godot on your system."
+        echo ""
+        echo "Please install Godot 4.3+ from https://godotengine.org/download"
+        echo "or make sure it is available in one of these locations:"
+        echo "  - /Applications/Godot.app"
+        echo "  - ~/Applications/Godot.app"
+        echo "  - In your PATH (as 'godot')"
+        exit 1
+    fi
+
+    echo "Using Godot at: $GODOT_APP"
+
+    if [[ "$1" == "--editor" ]]; then
+        echo "Opening project in Godot editor..."
+        exec "$GODOT_APP" --path "$PROJECT_DIR" --editor
+    else
+        echo "Launching game..."
+        exec "$GODOT_APP" --path "$PROJECT_DIR"
+    fi
+}
+
+main "$@"
