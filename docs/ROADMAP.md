@@ -4,15 +4,17 @@
 
 Construir un RPG 2D minimalista en Godot 4 de forma iterativa, usando un flujo de trabajo disciplinado con issues y ramas.
 
+**Estado actual del proyecto (Mayo 2026):** MVP básico jugable completado. Ver [README.md](../README.md) para instrucciones de uso.
+
 ---
 
 ## Hitos Principales
 
-### Hito 0 — Fundación (Actual)
+### Hito 0 — Fundación
 - [x] Repositorio creado en GitHub
 - [x] Documentación inicial (README + docs/)
-- [ ] Proyecto Godot inicializado con estructura limpia
-- [ ] Primeros issues creados
+- [x] Proyecto Godot 4 inicializado con estructura recomendada
+- [x] Issues de calidad de vida agregados (run script, debug tools, input mapping, export)
 
 **Meta:** Tener todo listo para empezar a desarrollar sin ambigüedades.
 
@@ -32,7 +34,9 @@ Construir un RPG 2D minimalista en Godot 4 de forma iterativa, usando un flujo d
 
 **Criterio de Done:** Ver [docs/SCOPE.md](./SCOPE.md)
 
-**Estado:** Pendiente de inicio
+**Estado:** Completado (MVP jugable)
+
+**Nota:** El Hito 1 se completó de forma alternativa usando generación procedural del mapa en lugar de un TileSet diseñado manualmente. El objetivo principal (personaje moviéndose en un mapa con colisiones y cámara) se logró.
 
 ---
 

@@ -77,10 +77,16 @@ Este proyecto sigue las reglas definidas en `rav ai-setup`:
 
 ## Cómo abrir y correr el proyecto
 
-1. Instalar [Godot 4.3+](https://godotengine.org/download)
-2. Clonar el repositorio
-3. Abrir la carpeta raíz con Godot (`Project > Open Project`)
-4. Presionar "Play" (F5)
+### Forma recomendada (Mac)
+
+```bash
+./run
+```
+
+### Otras formas
+
+- Abrir el proyecto directamente en Godot 4.3+ y presionar Play (F5)
+- Usar `./run --editor` para abrir el proyecto en el editor de Godot
 
 ---
 
@@ -92,10 +98,15 @@ Este proyecto sigue las reglas definidas en `rav ai-setup`:
 - [x] **MVP jugable**: Personaje puede caminar por un mapa generado con colisiones y cámara que lo sigue
 
 **Cómo jugar el MVP actual:**
-- Abrir en Godot 4.3+
-- Presionar Play (F5)
-- Usar WASD o Flechas para moverte
+- Ejecuta `./run` (recomendado en Mac)
+- Usa **WASD** o **Flechas** para moverte
 - Explora el mapa generado (60x40 tiles con paredes y decoración)
+
+### Herramientas de desarrollo incluidas
+
+- `./run --editor` → Abre el proyecto en Godot
+- **R** → Recarga la escena actual (muy útil mientras desarrollas)
+- **F3** → Muestra/oculta el contador de FPS
 
 ---
 
