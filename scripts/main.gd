@@ -93,3 +93,51 @@ func _spawn_player() -> void:
 	player.add_child(camera)
 
 	print("Jugador spawneado en el mapa")
+
+	# Setup debug overlay
+	_setup_debug_overlay()
+
+
+# =============================================================================
+# DEBUG / TESTING TOOLS (Issue #10)
+# =============================================================================
+
+var fps_label: Label
+var debug_enabled := false
+
+func _setup_debug_overlay() -> void:
+	fps_label = Label.new()
+	fps_label.name = "FPSLabel"
+	fps_label.position = Vector2(20, 20)
+	fps_label.add_theme_font_size_override("font_size", 18)
+	fps_label.add_theme_color_override("font_color", Color(1, 1, 1))
+	fps_label.add_theme_color_override("font_outline_color", Color(0, 0, 0))
+	fps_label.add_theme_constant_override("outline_size", 4)
+	fps_label.visible = false
+	add_child(fps_label)
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	# Reload scene (very useful for testing)
+	if event.is_action_pressed("ui_cancel") and event is InputEventKey and event.ctrl_pressed:
+		# Ctrl + Escape for hard quit (safety)
+		get_tree().quit()
+		return
+
+	if event is InputEventKey and event.pressed and not event.echo:
+		match event.keycode:
+			KEY_R:
+				# R → Reload current scene
+				print("Debug: Reloading scene...")
+				get_tree().reload_current_scene()
+			
+			KEY_F3:
+				# F3 → Toggle FPS counter
+				debug_enabled = not debug_enabled
+				fps_label.visible = debug_enabled
+				print("Debug: FPS overlay = ", debug_enabled)
+
+
+func _process(_delta: float) -> void:
+	if debug_enabled and fps_label:
+		fps_label.text = "FPS: %d" % Engine.get_frames_per_second()
